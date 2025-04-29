@@ -2,17 +2,15 @@
 <h1>This is home Page</h1>
 
 <div class="container">
+  {% for contact in Contacts %}
   <div class="card">
     <div class="card-content">
-      name: Mohit <br />
-      email: m@gmail.com <br />
-      phone no: 8536342358
+      name: {{ contact.Name }} <br />
+      email: {{ contact.Email }} <br />
+      phone no: {{ contact.number }}
     </div>
   </div>
-  <div class="card"></div>
-  <div class="card"></div>
-  <div class="card"></div>
-  <div class="card"></div>
+  {% endfor %}
 </div>
 
-{% endblock %}
+{% endblock content %}
