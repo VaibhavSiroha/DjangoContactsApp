@@ -1,10 +1,18 @@
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Page</title>
-  </head>
-  <body>
-    <h1>This is home Page</h1>
-  </body>
-</html>
+{% extends 'main.html' %} {% block content %}
+<h1>This is home Page</h1>
+
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+      name: Mohit <br />
+      email: m@gmail.com <br />
+      phone no: 8536342358
+    </div>
+  </div>
+  <div class="card"></div>
+  <div class="card"></div>
+  <div class="card"></div>
+  <div class="card"></div>
+</div>
+
+{% endblock %}
