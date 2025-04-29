@@ -2,12 +2,14 @@ from django.shortcuts import render
 from .models import Contact
 # Create your views here.
 def home(request):
-    return render(request,'home.html')
+    Contacts = Contact.objects.all()
+    context={'Contacts':Contacts}
+    return render(request,'home.html',context)
 
 def contact(request):
     return render(request,'contact.html')
 
 def ContactBar(request):
-    names = Contact.objects.all()
-    context={'names':names}
+    Contacts = Contact.objects.all()
+    context={'Contacts':Contacts}
     return render(request,context)
