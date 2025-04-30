@@ -2,9 +2,11 @@
   {% for contact in Contacts %}
   <div class="card">
     <div class="card-content">
-      name: {{ contact.name }} <br />
+      <a href="{% url 'contact' contact.id %}"> name: {{ contact.name }} </a>
+      <br />
       email: {{ contact.email }} <br />
       phone no: {{ contact.number }}
+      <div><a href="{% url 'editcontact' contact.id %}">edit this</a></div>
     </div>
   </div>
   {% endfor %}

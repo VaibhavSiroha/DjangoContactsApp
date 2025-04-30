@@ -1,14 +1,16 @@
 from django.shortcuts import render,redirect
 from .models import Contact
-from .forms import ContactForm
+from .forms import ContactForm,EditForm
 # Create your views here.
 def home(request):
     Contacts = Contact.objects.all()
     context={'Contacts':Contacts}
     return render(request,'main/home.html',context)
 
-def contact(request):
-    return render(request,'main/contact.html')
+def contact(request,id):
+    contact=Contact.objects.get(id=id)
+    context={'contact':contact}
+    return render(request,'main/contact.html',context)
 
 def ContactBar(request):
     Contacts = Contact.objects.all()
@@ -26,6 +28,18 @@ def AddContact(request):
 
     context={'form':form}
     return render(request,'main/add_contact.html',context)
+
+def EditContact(request,id):
+    contact=Contact.objects.get(id=id)
+    if request.method=='POST':
+        form=EditForm(request.POST, instance=contact)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form=EditForm(instance=contact)
+    context={'form':form}
+    return render(request,'main/edit_contact.html',context)
 
 def Filter(request):
     context={}
