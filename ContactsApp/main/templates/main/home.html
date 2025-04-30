@@ -1,0 +1,10 @@
+{% extends 'main.html' %} {% block content %}
+<h1>This is home Page</h1>
+<div class="home-container">
+  <div>{% include 'main/filter.html' %}</div>
+  <div>
+    <a href="{% url 'addcontact' %}">AddContact</a>
+    {% include 'main/contacts-list.html' %}
+  </div>
+</div>
+{% endblock content %}
