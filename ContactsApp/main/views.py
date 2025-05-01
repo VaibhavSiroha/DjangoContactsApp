@@ -1,11 +1,20 @@
 from django.shortcuts import render,redirect
+from django.db.models import Q
 from .models import Contact
 from .forms import ContactForm,EditForm
-# Create your views here.
+
 def home(request):
-    Contacts = Contact.objects.all()
-    context={'Contacts':Contacts}
-    return render(request,'main/home.html',context)
+    query = request.GET.get('q','')
+    if query:
+        contacts = Contact.objects.filter(
+            Q(name__icontains=query) | Q(email__icontains=query) | Q(number__icontains=query)
+        )
+    else:
+        contacts = Contact.objects.all()
+
+    context = {'Contacts': contacts, 'query': query}
+    return render(request, 'main/home.html', context)
+
 
 def contact(request,id):
     contact=Contact.objects.get(id=id)
@@ -41,6 +50,4 @@ def EditContact(request,id):
     context={'form':form}
     return render(request,'main/edit_contact.html',context)
 
-def Filter(request):
-    context={}
-    return render(request,'main/filter.html',context)
+
