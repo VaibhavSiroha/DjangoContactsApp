@@ -7,4 +7,4 @@ urlpatterns = [
     path('addcontact/',views.AddContact,name='addcontact'),
     #path('Filter/',views.Filter,name='filter'),
     path('EditPage/<str:id>',views.EditContact,name='editcontact'),
-] 
+]

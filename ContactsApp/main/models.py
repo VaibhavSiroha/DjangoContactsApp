@@ -1,9 +1,20 @@
 from django.db import models
-
-# Create your models here.
-
+from django.core.validators import RegexValidator
 
 class Contact(models.Model):
-    name=models.CharField(max_length=200)
-    email=models.EmailField(max_length=200)
-    number=models.CharField(max_length=15)
+    name = models.CharField(max_length=200)
+    email = models.EmailField(max_length=200)
+    number = models.CharField(
+        max_length=10,
+        validators=
+        [
+            RegexValidator(
+                regex=r'^\d{10}$',
+                message="Enter a valid 10-digit mobile number.",
+                code='invalid_number'
+            )
+        ]
+    )
+
+    def __str__(self):
+        return f"{self.name} - {self.number}"
