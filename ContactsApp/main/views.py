@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.db.models import Q
 from .models import Contact
 from .forms import ContactForm,EditForm
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     query = request.GET.get('q','')
@@ -26,6 +27,7 @@ def ContactBar(request):
     context={'Contacts':Contacts}
     return render(request,context)
 
+@login_required
 def AddContact(request):
     if request.method=='POST':
         form=ContactForm(request.POST)
@@ -38,6 +40,7 @@ def AddContact(request):
     context={'form':form}
     return render(request,'main/add_contact.html',context)
 
+@login_required
 def EditContact(request,id):
     contact=Contact.objects.get(id=id)
     if request.method=='POST':
