@@ -7,4 +7,6 @@ urlpatterns = [
     path('addcontact/',views.AddContact,name='addcontact'),
     #path('Filter/',views.Filter,name='filter'),
     path('EditPage/<str:id>',views.EditContact,name='editcontact'),
+    path('register/', views.register, name='register'),  # Add registration URL
+    path('login/', views.login_view, name='login')
 ]
