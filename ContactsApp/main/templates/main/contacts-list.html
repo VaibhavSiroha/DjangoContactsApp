@@ -7,7 +7,9 @@
       email: {{ contact.email }} <br />
       phone no: {{ contact.number }}
     </div>
+    {% if user.is_authenticated %}
     <a href="{% url 'editcontact' contact.id %}">Edit</a>
+    {% endif %}
   </div>
   {% endfor %} {% else %}
   <p>No contacts found.</p>

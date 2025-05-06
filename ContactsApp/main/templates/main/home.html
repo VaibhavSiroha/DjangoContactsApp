@@ -3,8 +3,9 @@
 <div class="home-container">
   <div>{% include 'main/filter.html' %}</div>
   <div>
+    {% if user.is_authenticated %}
     <a href="{% url 'addcontact' %}">AddContact</a>
-    {% include 'main/contacts-list.html' %}
+    {% endif %} {% include 'main/contacts-list.html' %}
   </div>
 </div>
 {% endblock content %}
